@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>WatchParty Room</title>
+
+    <link rel="stylesheet" href="vc.css">
+
+    <!-- Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+
+</head>
+
+<body class="room-page">
+
+    <!-- ===========================
+            HEADER
+    ============================ -->
+
+    <header class="topbar">
+
+        <div class="logo">
+
+            🎬 <span>Watchers!</span>
+
+        </div>
+
+        <div class="room-info">
+
+            Room ID :
+            <strong id="roomCode">------</strong>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ===========================
+            MAIN LAYOUT
+    ============================ -->
+
+    <main class="room-layout">
+
+
+
+        <!-- LEFT PANEL -->
+
+        <aside class="left-panel">
+
+            <h3>Participants</h3>
+
+            <ul id="participantList"></ul>
+
+        </aside>
+
+
+
+        <!-- CENTER PANEL -->
+
+        <section class="center-panel">
+
+            <div class="watch-card">
+
+                <div class="card-title">
+
+                    ▶ Watch Party
+
+                </div>
+
+                <div class="youtube-controls">
+
+                    <input
+                        type="text"
+                        id="youtubeUrlField"
+                        placeholder="Paste YouTube Link">
+
+                    <button
+                        id="loadYoutubeVideoButton">
+                        LOAD
+                    </button>
+
+                </div>
+
+               <iframe
+id="youtubeVideoPlayer"
+allow="autoplay"
+allowfullscreen
+src=""
+></iframe>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RIGHT PANEL -->
+
+        <aside class="right-panel">
+         
+
+            <!-- Camera -->
+
+            <div class="camera-card">
+
+                <h3>Video Call</h3>
+
+                <video
+                    id="localVideo"
+                    autoplay
+                    muted
+                    playsinline>
+                </video>
+
+                <video
+                    id="remoteVideo"
+                    autoplay
+                    playsinline>
+                </video>
+
+                <div class="video-buttons">
+
+                    <button
+                        id="muteCallButton">
+
+                        🎤 Mute
+
+                    </button>
+
+                    <button
+                        id="endCallButton">
+
+                        📞 End
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Chat -->
+
+            <div class="chat-card">
+
+                <h3>Chat</h3>
+
+                <div
+                    id="chatMessagesDisplay"
+                    class="chat-box">
+                </div>
+
+                <input
+                    id="chatInputField"
+                    type="text"
+                    placeholder="Type message">
+
+                <button
+                    id="sendChatButton">
+
+                    SEND
+
+                </button>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+
+    <!-- Hidden Username Section -->
+
+    <div
+        class="username-input"
+        style="display:none">
+
+        <input
+            id="userNameInput">
+
+        <button
+            id="createUserButton">
+
+            Join Room
+
+        </button>
+
+    </div>
+
+
+
+    <!-- Load Username Automatically -->
+
+    <script>
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const username =
+            params.get("username");
+
+        const input =
+            document.getElementById(
+                "userNameInput"
+            );
+
+        if (username) {
+
+            input.value = username;
+
+        }
+
+        window.onload = () => {
+
+            document
+                .getElementById(
+                    "createUserButton"
+                )
+                .click();
+
+        };
+
+    </script>
+
+
+
+    <!-- Socket Logic -->
+
+    <script src="js/socket.js"></script>
+
+</body>
+
+</html>

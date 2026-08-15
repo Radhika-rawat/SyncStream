@@ -1,0 +1,26 @@
+{
+  "name": "watchparty-project",
+  "version": "1.0.0",
+  "description": "Real time watchparty web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Radhika-rawat/WatchpartyWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Radhika-rawat/WatchpartyWeb/issues"
+  },
+  "homepage": "https://github.com/Radhika-rawat/WatchpartyWeb#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.2.0",
+    "socket.io": "^4.8.3"
+  }
+}

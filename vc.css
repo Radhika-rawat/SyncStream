@@ -1,0 +1,721 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f1117;
+    color:white;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.topbar{
+
+    height:70px;
+
+    background:#181d28;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 40px;
+
+    border-bottom:1px solid #2a3446;
+
+}
+
+.logo{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#35d07f;
+
+}
+
+.room-info{
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   MAIN GRID
+=========================== */
+
+.room-layout{
+
+    display:grid;
+
+    grid-template-columns:240px 1fr 340px;
+
+    gap:20px;
+
+    padding:20px;
+
+    height:calc(100vh - 70px);
+
+}
+
+/* ===========================
+   PANELS
+=========================== */
+
+.left-panel,
+.center-panel,
+.right-panel{
+
+    background:#181d28;
+
+    border-radius:16px;
+
+    padding:20px;
+
+}
+
+/* ===========================
+   PARTICIPANTS
+=========================== */
+
+.left-panel h3{
+
+    margin-bottom:20px;
+
+    font-size:22px;
+
+}
+
+#participantList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.participant{
+
+    background:#222b39;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.online-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#35d07f;
+
+}
+/* ==========================================
+   CENTER PANEL
+========================================== */
+
+.watch-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+}
+
+.card-title{
+
+    font-size:26px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================================
+   YOUTUBE CONTROLS
+========================================== */
+
+.youtube-controls{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+.youtube-controls input{
+
+    flex:1;
+
+    padding:14px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    background:#242c3d;
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+.youtube-controls input::placeholder{
+
+    color:#9ca7ba;
+
+}
+
+.youtube-controls button{
+
+    width:120px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#35d07f;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.youtube-controls button:hover{
+
+    background:#28ba6d;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   PLAYER
+========================================== */
+
+#youtubeVideoPlayer{
+
+    width:100%;
+
+    flex:1;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:black;
+
+    min-height:550px;
+
+}
+
+/* ==========================================
+   CARD SHADOW
+========================================== */
+
+.watch-card{
+
+    background:#181d28;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+/* ==========================================
+   RIGHT PANEL
+========================================== */
+
+.right-panel{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* ==========================================
+   VIDEO CALL CARD
+========================================== */
+
+.camera-card{
+
+    background:#181d28;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.camera-card h3{
+
+    margin-bottom:15px;
+
+    font-size:22px;
+
+}
+
+/* ==========================================
+   LOCAL VIDEO
+========================================== */
+
+#localVideo{
+
+    width:100%;
+
+    height:180px;
+
+    border-radius:12px;
+
+    background:black;
+
+    object-fit:cover;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================================
+   REMOTE VIDEO
+========================================== */
+
+#remoteVideo{
+
+    width:100%;
+
+    height:180px;
+
+    border-radius:12px;
+
+    background:black;
+
+    object-fit:cover;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================================
+   VIDEO BUTTONS
+========================================== */
+
+.video-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.video-buttons button{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+/* MUTE */
+
+#muteCallButton{
+
+    background:#35d07f;
+
+    color:white;
+
+}
+
+#muteCallButton:hover{
+
+    background:#28ba6d;
+
+}
+
+/* END */
+
+#endCallButton{
+
+    background:#ff4d4d;
+
+    color:white;
+
+}
+
+#endCallButton:hover{
+
+    background:#d63b3b;
+
+}
+
+/* ==========================================
+   CHAT CARD
+========================================== */
+
+.chat-card{
+
+    background:#181d28;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    flex:1;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+.chat-card h3{
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================================
+   CHAT BOX
+========================================== */
+
+#chatMessagesDisplay{
+
+    flex:1;
+
+    background:#222b39;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    overflow-y:auto;
+
+    margin-bottom:15px;
+
+    min-height:220px;
+
+}
+
+#chatMessagesDisplay div{
+
+    margin-bottom:12px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+}
+
+#chatMessagesDisplay strong{
+
+    color:#35d07f;
+
+}
+
+/* ==========================================
+   CHAT INPUT
+========================================== */
+
+#chatInputField{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    background:#242c3d;
+
+    color:white;
+
+    margin-bottom:12px;
+
+}
+
+/* ==========================================
+   SEND BUTTON
+========================================== */
+
+#sendChatButton{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#35d07f;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#sendChatButton:hover{
+
+    background:#28ba6d;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+#chatMessagesDisplay::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#chatMessagesDisplay::-webkit-scrollbar-thumb{
+
+    background:#35d07f;
+
+    border-radius:20px;
+
+}
+
+#chatMessagesDisplay::-webkit-scrollbar-track{
+
+    background:#1d2635;
+
+}
+/* ==========================================
+   HOVER EFFECTS
+========================================== */
+
+.left-panel,
+.center-panel,
+.right-panel{
+
+    transition:0.3s;
+
+}
+
+.left-panel:hover,
+.center-panel:hover,
+.right-panel:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+   BUTTON ANIMATION
+========================================== */
+
+button{
+
+    transition:all .3s ease;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+button:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================
+   INPUT FOCUS
+========================================== */
+
+input:focus{
+
+    outline:none;
+
+    border:2px solid #35d07f;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1200px){
+
+    .room-layout{
+
+        grid-template-columns:220px 1fr;
+
+    }
+
+    .right-panel{
+
+        grid-column:1 / span 2;
+
+        flex-direction:row;
+
+    }
+
+    .camera-card{
+
+        width:40%;
+
+    }
+
+    .chat-card{
+
+        width:60%;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .room-layout{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .left-panel,
+    .center-panel,
+    .right-panel{
+
+        width:100%;
+
+    }
+
+    .right-panel{
+
+        flex-direction:column;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        height:auto;
+
+        gap:10px;
+
+        padding:20px;
+
+    }
+
+    .youtube-controls{
+
+        flex-direction:column;
+
+    }
+
+    .youtube-controls button{
+
+        width:100%;
+
+    }
+
+    #localVideo,
+    #remoteVideo{
+
+        height:150px;
+
+    }
+
+}
+
+/* ==========================================
+   SMOOTH SCROLL
+========================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================================
+   SELECTION
+========================================== */
+
+::selection{
+
+    background:#35d07f;
+
+    color:white;
+
+}

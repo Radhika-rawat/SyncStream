@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Watch Together</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Socket.IO CLIENT -->
+   <script src="/socket.io/socket.io.js"></script>
+
 </head>
 
 <body>
 
     <main class="container">
 
-        <!-- Hero Section -->
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
+
         <section class="hero">
 
             <h1>
@@ -22,9 +34,9 @@
             </h1>
 
             <p>
-                Experience movies and videos with friends in perfect sync.
-                High-quality video calling and seamless playback for the
-                ultimate virtual movie night.
+                Experience movies and videos with friends in perfect
+                sync. High-quality video calling and seamless playback
+                for the ultimate virtual movie night.
             </p>
 
             <div class="buttons">
@@ -32,6 +44,7 @@
                 <button
                     class="btn host-btn"
                     id="hostBtn"
+                    type="button"
                 >
                     🎬 &nbsp; HOST A PARTY
                 </button>
@@ -39,6 +52,7 @@
                 <button
                     class="btn join-btn"
                     id="joinBtn"
+                    type="button"
                 >
                     🚀 &nbsp; JOIN A PARTY
                 </button>
@@ -48,7 +62,10 @@
         </section>
 
 
-        <!-- Features -->
+        <!-- =========================
+             FEATURES
+        ========================== -->
+
         <section class="features">
 
             <article class="card">
@@ -109,37 +126,63 @@
     </main>
 
 
-    <!-- Modal -->
-    <div class="modal-overlay" id="modal">
+    <!-- =========================
+         HOST / JOIN MODAL
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="modal"
+    >
 
         <div class="modal">
 
             <button
                 class="close-btn"
                 id="closeBtn"
+                type="button"
+                aria-label="Close"
             >
                 ×
             </button>
+
 
             <h2 id="modalTitle">
                 Host a Party
             </h2>
 
+
             <p id="modalDescription">
                 Create a room and invite your friends to watch together.
             </p>
+
+
+            <!-- Username -->
+
+            <input
+                type="text"
+                id="usernameInput"
+                placeholder="Enter your name"
+                autocomplete="name"
+            >
+
+
+            <!-- Room -->
 
             <input
                 type="text"
                 id="roomInput"
                 placeholder="Enter room name"
+                autocomplete="off"
             >
+
 
             <div class="modal-actions">
 
                 <button
                     class="cancel"
                     id="cancelBtn"
+                    type="button"
                 >
                     Cancel
                 </button>
@@ -147,6 +190,7 @@
                 <button
                     class="confirm"
                     id="confirmBtn"
+                    type="button"
                 >
                     Continue
                 </button>
@@ -158,7 +202,369 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <!-- =====================================================
+         FRONTEND JAVASCRIPT
+         This is the JavaScript that belongs in the browser.
+    ====================================================== -->
+
+    <script>
+
+        // ==================================================
+        // SOCKET.IO
+        // ==================================================
+
+        const socket = io();
+
+
+        // ==================================================
+        // DOM ELEMENTS
+        // ==================================================
+
+        const hostBtn =
+            document.getElementById("hostBtn");
+
+        const joinBtn =
+            document.getElementById("joinBtn");
+
+        const modal =
+            document.getElementById("modal");
+
+        const closeBtn =
+            document.getElementById("closeBtn");
+
+        const cancelBtn =
+            document.getElementById("cancelBtn");
+
+        const confirmBtn =
+            document.getElementById("confirmBtn");
+
+        const modalTitle =
+            document.getElementById("modalTitle");
+
+        const modalDescription =
+            document.getElementById("modalDescription");
+
+        const usernameInput =
+            document.getElementById("usernameInput");
+
+        const roomInput =
+            document.getElementById("roomInput");
+
+
+        // ==================================================
+        // VARIABLES
+        // ==================================================
+
+        let currentAction = null;
+
+
+        // ==================================================
+        // OPEN MODAL
+        // ==================================================
+
+        function openModal(action) {
+
+            currentAction = action;
+
+            modal.classList.add("active");
+
+            usernameInput.value = "";
+            roomInput.value = "";
+
+
+            if (action === "host") {
+
+                modalTitle.textContent =
+                    "Host a Party";
+
+                modalDescription.textContent =
+                    "Enter your name and create a room for your friends.";
+
+                roomInput.placeholder =
+                    "Enter room name";
+
+                confirmBtn.textContent =
+                    "Create Room";
+
+            } else {
+
+                modalTitle.textContent =
+                    "Join a Party";
+
+                modalDescription.textContent =
+                    "Enter your name and the room code shared by the host.";
+
+                roomInput.placeholder =
+                    "Enter room code";
+
+                confirmBtn.textContent =
+                    "Join Room";
+
+            }
+
+            usernameInput.focus();
+        }
+
+
+        // ==================================================
+        // CLOSE MODAL
+        // ==================================================
+
+        function closeModal() {
+
+            modal.classList.remove("active");
+
+            currentAction = null;
+        }
+
+
+        // ==================================================
+        // HOST BUTTON
+        // ==================================================
+
+        hostBtn.addEventListener(
+            "click",
+            () => {
+
+                openModal("host");
+
+            }
+        );
+
+
+        // ==================================================
+        // JOIN BUTTON
+        // ==================================================
+
+        joinBtn.addEventListener(
+            "click",
+            () => {
+
+                openModal("join");
+
+            }
+        );
+
+
+        // ==================================================
+        // CLOSE BUTTON
+        // ==================================================
+
+        closeBtn.addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        // ==================================================
+        // CANCEL BUTTON
+        // ==================================================
+
+        cancelBtn.addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        // ==================================================
+        // CLICK OUTSIDE MODAL
+        // ==================================================
+
+        modal.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        // ==================================================
+        // CONTINUE BUTTON
+        // ==================================================
+
+        confirmBtn.addEventListener(
+            "click",
+            continueToRoom
+        );
+
+
+        // ==================================================
+        // CREATE / JOIN ROOM
+        // ==================================================
+
+        function continueToRoom() {
+
+            const username =
+                usernameInput.value.trim();
+
+            const roomName =
+                roomInput.value.trim();
+
+
+            // Check username
+            if (!username) {
+
+                alert(
+                    "Please enter your name."
+                );
+
+                usernameInput.focus();
+
+                return;
+            }
+
+
+            // Check room
+            if (!roomName) {
+
+                alert(
+                    currentAction === "host"
+                        ? "Please enter a room name."
+                        : "Please enter a room code."
+                );
+
+                roomInput.focus();
+
+                return;
+            }
+
+
+            // ==============================================
+            // HOST
+            // ==============================================
+
+            if (currentAction === "host") {
+
+                const url =
+                    `vc.html?host=true` +
+                    `&username=${encodeURIComponent(username)}` +
+                    `&roomName=${encodeURIComponent(roomName)}`;
+
+
+                window.location.href = url;
+
+                return;
+            }
+
+
+            // ==============================================
+            // JOIN
+            // ==============================================
+
+            if (currentAction === "join") {
+
+                const roomId =
+                    roomName.toUpperCase();
+
+
+                const url =
+                    `vc.html?host=false` +
+                    `&username=${encodeURIComponent(username)}` +
+                    `&room=${encodeURIComponent(roomId)}`;
+
+
+                window.location.href = url;
+
+            }
+
+        }
+
+
+        // ==================================================
+        // ENTER KEY
+        // ==================================================
+
+        usernameInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    roomInput.focus();
+
+                }
+
+            }
+        );
+
+
+        roomInput.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    continueToRoom();
+
+                }
+
+            }
+        );
+
+
+        // ==================================================
+        // ESCAPE KEY
+        // ==================================================
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        // ==================================================
+        // SOCKET CONNECTION STATUS
+        // ==================================================
+
+        socket.on(
+            "connect",
+            () => {
+
+                console.log(
+                    "Connected to Watchparty server:",
+                    socket.id
+                );
+
+            }
+        );
+
+
+        socket.on(
+            "connect_error",
+            (error) => {
+
+                console.error(
+                    "Socket connection error:",
+                    error
+                );
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
