@@ -1,0 +1,508 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+
+    background: #053229;
+
+    color: white;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* Background Grid */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    opacity: 0.35;
+
+    background-image:
+        linear-gradient(
+            rgba(3, 2, 2, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 64px 64px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+}
+
+
+/* Container */
+
+.container {
+    width: min(1200px, 90%);
+
+    margin: auto;
+}
+
+
+/* Hero */
+
+.hero {
+    text-align: center;
+
+    padding-top: 45px;
+
+    min-height: 580px;
+}
+
+
+.hero h1 {
+    font-size: clamp(48px, 6vw, 78px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -3px;
+
+    color: #f4f1eb;
+}
+
+
+.hero h1 span {
+    display: block;
+
+    color: #c09317;
+
+    position: relative;
+
+    width: fit-content;
+
+    margin: 0 auto;
+}
+
+
+.hero h1 span::after {
+    content: "";
+
+    position: absolute;
+
+    height: 8px;
+
+    left: 0;
+    right: 0;
+
+    bottom: -8px;
+
+    border-radius: 10px;
+
+    background: rgba(216, 222, 219, 0.22);
+}
+
+
+.hero p {
+    max-width: 610px;
+
+    margin: 35px auto 0;
+
+    color: #ede9e9;
+
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    font-weight: 500;
+}
+
+
+/* Buttons */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 16px;
+
+    margin-top: 58px;
+}
+
+
+.btn {
+    height: 62px;
+
+    min-width: 223px;
+
+    padding: 0 28px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+
+.host-btn {
+    background: #c09317;
+
+    color: white;
+
+    border: 1px solid #c09317;
+}
+
+
+.host-btn:hover {
+    background: #c09317;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 35px rgba(43, 184, 115, 0.2);
+}
+
+
+.join-btn {
+    background: transparent;
+
+    color: #c09317;
+
+    border: 1px solid rgba(37, 184, 109, 0.4);
+}
+
+
+.join-btn:hover {
+    background: rgba(37, 184, 109, 0.07);
+
+    border-color: #c09317;
+
+    transform: translateY(-2px);
+}
+
+
+/* Feature Cards */
+
+.features {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+
+    padding-bottom: 60px;
+}
+
+
+.card {
+    min-height: 290px;
+
+    padding: 40px 34px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 22, 27, 0.92),
+            rgba(8, 11, 15, 0.95)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.02),
+        0 20px 50px rgba(0,0,0,0.18);
+
+    transition: 0.25s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(39, 184, 109, 0.2);
+}
+
+
+/* Icons */
+
+.icon {
+    width: 57px;
+
+    height: 57px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: rgba(20, 184, 110, 0.08);
+
+    border: 1px solid rgba(20, 184, 110, 0.13);
+
+    font-size: 27px;
+
+    margin-bottom: 27px;
+}
+
+
+.card h2 {
+    color: #c8a65d;
+
+    font-size: 19px;
+
+    margin-bottom: 18px;
+
+    font-weight: 800;
+}
+
+
+.card p {
+    color: #e6e0e0;
+
+    font-size: 16px;
+
+    line-height: 1.75;
+
+    max-width: 310px;
+}
+
+
+/* Modal */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    backdrop-filter: blur(8px);
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 100;
+}
+
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+.modal {
+    position: relative;
+
+    width: min(430px, 90%);
+
+    background: #0b0f13;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 18px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.5);
+}
+
+
+.modal h2 {
+    margin-bottom: 10px;
+
+    font-size: 25px;
+}
+
+
+.modal p {
+    color: #888;
+
+    margin-bottom: 25px;
+
+    line-height: 1.6;
+}
+
+
+.modal input {
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 16px;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #05080b;
+
+    border: 1px solid #242a30;
+
+    color: white;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+
+.modal input:focus {
+    border-color: #d84d1f;
+}
+
+
+/* Close Button */
+
+.close-btn {
+    position: absolute;
+
+    right: 18px;
+
+    top: 14px;
+
+    background: transparent;
+
+    border: none;
+
+    color: #777;
+
+    font-size: 30px;
+
+    cursor: pointer;
+}
+
+
+.close-btn:hover {
+    color: white;
+}
+
+
+/* Modal Buttons */
+
+.modal-actions {
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.modal-actions button {
+    flex: 1;
+
+    height: 50px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+
+.cancel {
+    background: transparent;
+
+    color: #aaa;
+
+    border: 1px solid #292f35;
+}
+
+
+.cancel:hover {
+    background: #14191e;
+}
+
+
+.confirm {
+    background: #2bb873;
+
+    color: white;
+
+    border: none;
+}
+
+
+.confirm:hover {
+    background: #31c77d;
+}
+
+
+/* Responsive */
+
+@media (max-width: 850px) {
+
+    .hero {
+        padding-top: 60px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: auto;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .hero h1 {
+        font-size: 45px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero p {
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+
+    .buttons {
+        flex-direction: column;
+
+        align-items: center;
+
+        margin-top: 40px;
+    }
+
+
+    .btn {
+        width: 100%;
+    }
+
+
+    .features {
+        margin-top: 20px;
+    }
+}

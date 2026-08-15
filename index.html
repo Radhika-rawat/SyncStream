@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Watch Together</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <h1>
+                Watch Together,
+                <span>Anywhere.</span>
+            </h1>
+
+            <p>
+                Experience movies and videos with friends in perfect sync.
+                High-quality video calling and seamless playback for the
+                ultimate virtual movie night.
+            </p>
+
+            <div class="buttons">
+
+                <button
+                    class="btn host-btn"
+                    id="hostBtn"
+                >
+                    🎬 &nbsp; HOST A PARTY
+                </button>
+
+                <button
+                    class="btn join-btn"
+                    id="joinBtn"
+                >
+                    🚀 &nbsp; JOIN A PARTY
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="features">
+
+            <article class="card">
+
+                <div class="icon">
+                    🎥
+                </div>
+
+                <h2>
+                    Perfect Sync
+                </h2>
+
+                <p>
+                    Pause, play, and seek in perfect synchronization
+                    with everyone in the room.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icon">
+                    💬
+                </div>
+
+                <h2>
+                    Live Video &amp; Chat
+                </h2>
+
+                <p>
+                    See your friends' reactions in real-time with
+                    built-in WebRTC video calling and chat.
+                </p>
+
+            </article>
+
+
+            <article class="card">
+
+                <div class="icon">
+                    📺
+                </div>
+
+                <h2>
+                    YouTube &amp; Local Media
+                </h2>
+
+                <p>
+                    Stream directly from YouTube or upload your own
+                    videos to watch together.
+                </p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+
+        <div class="modal">
+
+            <button
+                class="close-btn"
+                id="closeBtn"
+            >
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                Host a Party
+            </h2>
+
+            <p id="modalDescription">
+                Create a room and invite your friends to watch together.
+            </p>
+
+            <input
+                type="text"
+                id="roomInput"
+                placeholder="Enter room name"
+            >
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel"
+                    id="cancelBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    class="confirm"
+                    id="confirmBtn"
+                >
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
